@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="clrNav">#d80504</color>
+    <color name="clrOverflow">#000000</color>
+    <color name="clrText">#000000</color>
+</resources>
