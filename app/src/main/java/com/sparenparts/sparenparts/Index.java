@@ -86,52 +86,6 @@ public
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int densityDpi = (int) (metrics.density * 160f);
-        density=getResources().getDisplayMetrics().density;
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        final RelativeLayout layoutInstance = (RelativeLayout)findViewById(R.id.index_relative_layout);
-        ViewTreeObserver observer = layoutInstance.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if(isLayoutReady>=1) {
-                    // TODO Auto-generated method stub
-                    layoutHeight = layoutInstance.getHeight();
-                    layoutWidth = layoutInstance.getWidth();
-
-
-                    int orientation=getResources().getConfiguration().orientation;
-                    if(orientation== Configuration.ORIENTATION_PORTRAIT) {
-                        FrameLayout frame = (FrameLayout) findViewById(R.id.frameLayout);
-                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(layoutWidth, (int) (layoutWidth * .6));
-                        frame.setLayoutParams(lp);
-                    }
-                    //float tHeight=frame.getPivotX()+frame.getHeight();
-                    //int remainingHeight=layoutHeight-(int)tHeight;
-
-                    //FrameLayout frameTab=(FrameLayout) findViewById(R.id.frametablayout);
-                    //RelativeLayout.LayoutParams lpT = new RelativeLayout.LayoutParams(layoutWidth, (int)(layoutWidth*.6));
-                    //frame.setLayoutParams(lpT);
-                    //Toast.makeText(context, "" + layoutHeight + " " + layoutWidth+" "+(layoutWidth/(int)(layoutWidth*.6)), Toast.LENGTH_SHORT).show();
-                    Resources resources = context.getResources();
-                    int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-                    if (resourceId > 0) {
-                        navBarSize= resources.getDimensionPixelSize(resourceId);
-                    }
-                    if(navBarSize>0) {
-                        /*FrameLayout bannerLayout=(FrameLayout) findViewById(R.id.bannerlayout);
-                        RelativeLayout.LayoutParams lpB = new RelativeLayout.LayoutParams(layoutWidth, (int)(layoutWidth*.6));
-                        frame.setLayoutParams(lpB);*/
-                    }
-                    layoutInstance.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                }
-                else
-                    isLayoutReady++;
-            }
-        });
-
         workTabView();
 
     }
@@ -205,7 +159,6 @@ public
         spec.setContent(R.id.listViewTab2);
         spec.setIndicator("SHOW BY BRAND");
         mTabHost.addTab(spec);
-
         mTabHost.setCurrentTab(0);
 
 
@@ -248,7 +201,7 @@ public
             }
         });
 
-        new fillSHOPBYCATEGORY().execute();
+        //new fillSHOPBYCATEGORY().execute();
         return(true);
     }
 
@@ -273,7 +226,7 @@ public
                 for(int i=0; i < jsonArray.length(); i++){
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     //Get all data of above JSON data regarding category List
-                    allCategoryDetails[0][i] = jsonObject.optString("sno").toString();
+                    allCategoryDetails[0][i] = jsonObject.optString("sno");
                     allCategoryDetails[1][i] = jsonObject.optString("CategoryId").toString();
                     allCategoryDetails[2][i] = jsonObject.optString("CategoryName").toString();
                     allCategoryDetails[3][i] = jsonObject.optString("CategoryDescription").toString();
